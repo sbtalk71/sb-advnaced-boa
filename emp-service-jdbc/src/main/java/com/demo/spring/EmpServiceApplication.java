@@ -2,8 +2,11 @@ package com.demo.spring;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.autoconfigure.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,7 +19,7 @@ public class EmpServiceApplication {
 
 	private DataSource dataSource;
 
-	public EmpServiceApplication(DataSource dataSource) {
+	public EmpServiceApplication(@Qualifier("myDs2") DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
@@ -25,4 +28,6 @@ public class EmpServiceApplication {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate;
 	}
+	
+	
 }
