@@ -18,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demo.spring.entities.Employee;
 import com.demo.spring.exceptions.EmployeeNotFoundException;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+
 @Service
 public class EmpService {
 
@@ -38,7 +41,9 @@ public class EmpService {
 		//return empRepository.listAllEmps();
 	}
 
-	@Cacheable(value = "employee", key = "#id")
+	//@Cacheable(value = "employee", key = "#id")
+	@Retry(name = "emp-retry")
+	@CircuitBreaker(name = "emp-cb",fallbackMethod = "findByIdFallback")
 	public Employee findEmp(Integer id) {
 		logger.info("executing query for id {}",id);
 		Optional<Employee> empOp = empRepository.findById(id);
@@ -47,7 +52,7 @@ public class EmpService {
 			logger.info("Got Employee with id {} from database",id);
 			return empOp.get();
 		} else {
-			logger.info("EMployee not found, throwing exception {}", EmployeeNotFoundException.class.getName());
+			logger.info("Employee not found, throwing exception {}", EmployeeNotFoundException.class.getName());
 			throw new EmployeeNotFoundException("Emp does not exist");
 		}
 	}
@@ -88,5 +93,11 @@ public class EmpService {
 		Page<Employee> empPage=empRepository.findAll(pageable);
 		
 		return empPage.toList();
+	}
+	
+	//fallback methods
+	public Employee findByIdFallback(Integer id, Exception e) {
+		logger.info("returning from fallback method of circuit breaker...");
+		return new Employee("", "", 0.0);
 	}
 }
