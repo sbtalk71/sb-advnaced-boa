@@ -20,6 +20,7 @@ logging:
   level:
     '[org.springframework.jdbc]': debug
     '[org.springframework.cache]': debug
+    '[org.hibernate.orm]': debug
 
 management:
   endpoints:
