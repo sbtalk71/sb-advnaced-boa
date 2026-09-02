@@ -1,0 +1,6 @@
+DELIMITER //
+CREATE PROCEDURE get_all_employees()
+	BEGIN
+     SELECT empno,name,address,salary FROM myemp order by empno;
+	END //
+DELIMITER ;

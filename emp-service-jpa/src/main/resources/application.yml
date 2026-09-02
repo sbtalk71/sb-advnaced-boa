@@ -55,6 +55,13 @@ management:
   observations:
     annotations:
       enabled: true
+  tracing:
+    export:
+      enabled: true
+      zipkin:
+        enabled: true
+    sampling:
+      probability: 1.0
 
 app:
  datasource:

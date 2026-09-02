@@ -70,7 +70,7 @@
     </root>-->
 <springProfile name="default">
 <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="JSON_FILE"/>
     </root>
 </springProfile>
 
