@@ -16,7 +16,7 @@ management:
     export:
      enabled: true
      uri: https://phb17775.live.dynatrace.com/api/v2/metrics/ingest
-     api-token: <This neede removal>dt0c01.SKNX23CTUC6HOHRCQIAAQS57.DJK5XZSEHTGVXHJ2BFKSAEA6T5S4HT45LQKD2572YGBIY3NQF2KPOJDX6EMPK6X5
+     api-token: <This needs removal>
      step: 30s
 
   metrics:
