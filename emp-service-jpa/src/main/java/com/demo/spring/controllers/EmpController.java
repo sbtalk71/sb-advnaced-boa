@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.spring.EmpService;
 import com.demo.spring.entities.Employee;
+import com.demo.spring.util.MessageResponse;
 
 @RestController
 @RequestMapping("/emp")
@@ -41,9 +43,15 @@ public class EmpController {
 	}
 	
 	@DeleteMapping(path="/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deletEmp(@PathVariable Integer id)
+	public ResponseEntity<MessageResponse> deletEmp(@PathVariable Integer id)
 	{
-		return ResponseEntity.ok(empService.delete(id));
+		return ResponseEntity.ok(new MessageResponse(empService.delete(id)));
 	}
+	
+	@GetMapping( path="page",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Employee>> getPage( @RequestParam(required = true) int start, @RequestParam(required = true) int size) {
+		return ResponseEntity.ok(empService.getPagedEmpList(start, size));
+	}
+	
 	
 }

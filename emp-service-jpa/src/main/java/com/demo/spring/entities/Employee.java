@@ -1,26 +1,31 @@
 package com.demo.spring.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedStoredProcedureQueries;
+import jakarta.persistence.NamedStoredProcedureQuery;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="MYEMP")
-public class Employee {
+@Table(name = "MYEMP")
+@NamedStoredProcedureQuery(name = "getAllEmployees", procedureName = "get_all_employees") 
+public class Employee implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="EMPNO")
+	@Column(name = "EMPNO")
 	private Integer empId;
-	
+
 	private String name;
-	
-	@Column(name="ADDRESS")
+
+	@Column(name = "ADDRESS")
 	private String city;
-	
+
 	private Double salary;
 
 	public Employee() {
