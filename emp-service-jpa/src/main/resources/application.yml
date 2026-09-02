@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: emp-service
+  datasource:
+   url: jdbc:mysql://localhost:3306/springdb
+   username: ${DB_USER:root}
+   password: ${DB_PASSWORD:P@ssword}
+   hikari:
+      connection-init-sql: select count(empno) from myemp;
+      minimum-idle: 5
+      initialization-fail-timeout: 1
+  jpa:
+     show_sql: true
+     hibernate:
+      ddl-auto: update
+  cache:
+    type: simple
+
+logging:
+  level:
+    '[org.springframework.jdbc]': debug
+    '[org.springframework.cache]': debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+app:
+ datasource:
+  mysql:
+   url: jdbc:mysql://localhost:3306/springdb
+   username: root
+   password: P@ssword
+   
+
+
+    

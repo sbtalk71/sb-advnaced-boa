@@ -19,7 +19,7 @@ public class EmpServiceApplication {
 
 	private DataSource dataSource;
 
-	public EmpServiceApplication(@Qualifier("myDs2") DataSource dataSource) {
+	public EmpServiceApplication( DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 

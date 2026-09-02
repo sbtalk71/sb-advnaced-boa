@@ -18,14 +18,14 @@ import org.springframework.stereotype.Component;
 
 import com.demo.spring.entities.Employee;
 
-@Component
-public class PoolInitializer implements CommandLineRunner {
+//@Component
+public class CallableStmtDemoRunner implements CommandLineRunner {
 
 	private final DataSource mySqlDataSource;
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	PoolInitializer(DataSource mySqlDataSource) {
+	CallableStmtDemoRunner(DataSource mySqlDataSource) {
 		this.mySqlDataSource = mySqlDataSource;
 	}
 
@@ -45,8 +45,9 @@ public class PoolInitializer implements CommandLineRunner {
 
 			@Override
 			public List<Employee> doInCallableStatement(CallableStatement cs) throws SQLException, DataAccessException {
-				ResultSet rs = cs.getResultSet();
+				
 				List<Employee> list = new ArrayList<>();
+				ResultSet rs=cs.executeQuery();
 				if (rs != null) {
 					while (rs.next()) {
 						list.add(new Employee(rs.getInt("EMPNO"), rs.getString("NAME"), rs.getString("ADDRESS"),

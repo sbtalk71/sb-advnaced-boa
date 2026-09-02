@@ -12,19 +12,19 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
 
-	@Bean
+	//@Bean
 	@ConfigurationProperties("app.datasource.mysql")
 	DataSourceProperties mysqlProperties() {
 		System.out.println("db properties read..");
 		return new DataSourceProperties();
 	}
 
-	@Bean
+	//@Bean
 	DataSource mySqlDataSource() {
 		return mysqlProperties().initializeDataSourceBuilder().type(BasicDataSource.class).build();
 	}
 	
-	@Bean
+	//@Bean
 	DataSource myDs2() {
 		BasicDataSource ds= new BasicDataSource();
 		ds.setUrl("jdbc:mysql://localhost:3306/springdb");

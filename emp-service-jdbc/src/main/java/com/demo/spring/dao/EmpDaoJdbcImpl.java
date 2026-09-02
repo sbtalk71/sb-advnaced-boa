@@ -21,6 +21,7 @@ import com.demo.spring.exceptions.EmployeeNotFoundException;
 
 @Repository
 public class EmpDaoJdbcImpl implements EmpDao {
+	private final String FINDER_QUERY = "select * from myemp where empno=?";
 	private JdbcTemplate jdbcTemplate;
 
 	public EmpDaoJdbcImpl(JdbcTemplate jdbcTemplate) {
@@ -46,7 +47,7 @@ public class EmpDaoJdbcImpl implements EmpDao {
 
 	@Override
 	public Employee findEmpById(Integer id) {
-		final String FINDER_QUERY = "select * from myemp where empno=" + id;
+		
 		Employee emp = null;
 
 		try {
@@ -58,7 +59,8 @@ public class EmpDaoJdbcImpl implements EmpDao {
 					return new Employee(rs.getInt("EMPNO"), rs.getString("NAME"), rs.getString("ADDRESS"),
 							rs.getDouble("SALARY"));
 				}
-			});
+			},id);
+			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EmployeeNotFoundException("Employee with id " + id + " not found");
 		}
