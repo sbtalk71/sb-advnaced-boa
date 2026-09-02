@@ -1,0 +1,6 @@
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+Run multiple requests with curl:
+for /L %i in (1,1,50) do @curl -s http://localhost:8080/emp/104
+
+curl -X POST http://localhost:8080/emp -H "Content-Type: application/json" -d "{\"empId\":105,\"name\":\"John\",\"city\":\"Hyderabad\",\"salary\":75000}"

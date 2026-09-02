@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: spring-boot-observability
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  observations:
+   annotations:
+    enabled: true
+
+logging:
+ level:
+  io.micrometer: DEBUG
+  
