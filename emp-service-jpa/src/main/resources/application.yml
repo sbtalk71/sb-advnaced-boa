@@ -52,6 +52,9 @@ management:
   health: 
    circuitbreakers:
       enabled: true
+  observations:
+    annotations:
+      enabled: true
 
 app:
  datasource:

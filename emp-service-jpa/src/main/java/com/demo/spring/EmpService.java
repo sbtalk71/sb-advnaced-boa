@@ -20,6 +20,7 @@ import com.demo.spring.exceptions.EmployeeNotFoundException;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.micrometer.observation.annotation.Observed;
 
 @Service
 public class EmpService {
@@ -35,6 +36,7 @@ public class EmpService {
 
 	@Cacheable(value = "employees")
 	@Transactional
+	@Observed(name = "emp.find.all")
 	public List<Employee> getEmpList() {
 		logger.info("fetching employee list from database");
 		return empRepository.findAll();
@@ -44,6 +46,7 @@ public class EmpService {
 	//@Cacheable(value = "employee", key = "#id")
 	@Retry(name = "emp-retry")
 	@CircuitBreaker(name = "emp-cb",fallbackMethod = "findByIdFallback")
+	@Observed(name = "emp.find.one")
 	public Employee findEmp(Integer id) {
 		logger.info("executing query for id {}",id);
 		Optional<Employee> empOp = empRepository.findById(id);
