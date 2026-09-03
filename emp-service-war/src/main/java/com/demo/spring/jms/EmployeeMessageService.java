@@ -10,23 +10,17 @@ import jakarta.jms.Queue;
 @Service
 public class EmployeeMessageService {
 
-    private final JmsTemplate jmsTemplate;
+	private final JmsTemplate jmsTemplate;
+	private final Queue employeeQueue;
 
-    private final Queue employeeQueue;
+	public EmployeeMessageService(JmsTemplate jmsTemplate, Queue employeeQueue) {
 
-    public EmployeeMessageService(
-            JmsTemplate jmsTemplate,
-            Queue employeeQueue) {
+		this.jmsTemplate = jmsTemplate;
+		this.employeeQueue = employeeQueue;
+	}
 
-        this.jmsTemplate = jmsTemplate;
-        this.employeeQueue = employeeQueue;
-    }
+	public void send(Employee employee) {
 
-    public void send(Employee employee) {
-
-        jmsTemplate.convertAndSend(
-                employeeQueue,
-                employee
-        );
-    }
+		jmsTemplate.convertAndSend(employeeQueue, employee);
+	}
 }

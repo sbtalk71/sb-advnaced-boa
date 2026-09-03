@@ -11,8 +11,8 @@ import org.springframework.jms.core.JmsTemplate;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
 
-@Configuration
-@EnableJms
+//@Configuration
+//@EnableJms
 public class JmsConfig {
 
     @Bean
