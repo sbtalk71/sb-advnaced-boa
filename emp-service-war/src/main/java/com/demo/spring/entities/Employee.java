@@ -1,5 +1,7 @@
 package com.demo.spring.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="MYEMP")
-public class Employee {
+public class Employee implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

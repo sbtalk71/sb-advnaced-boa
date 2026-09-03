@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.demo.spring.entities.Employee;
 import com.demo.spring.exceptions.EmployeeNotFoundException;
+import com.demo.spring.jms.EmployeeMessageService;
 
 @Service
 public class EmpService {
 
 	private EmpRepository empRepository;
-
-	public EmpService(EmpRepository empRepository) {
+private EmployeeMessageService employeeMessageService;
+	public EmpService(EmpRepository empRepository,EmployeeMessageService employeeMessageService) {
 		this.empRepository = empRepository;
+		this.employeeMessageService=employeeMessageService;
 
 	}
 
@@ -31,7 +33,9 @@ public class EmpService {
 
 		Optional<Employee> empOp = empRepository.findById(id);
 		if (empOp.isPresent()) {
-			return empOp.get();
+			Employee emp=empOp.get();
+			employeeMessageService.send(emp);
+			return emp;
 		} else {
 			throw new EmployeeNotFoundException("Emp does not exist");
 		}
