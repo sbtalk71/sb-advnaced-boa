@@ -15,7 +15,12 @@ spring:
       ddl-auto: update
   cache:
     type: simple
-
+  security:
+   oauth2:
+    resourceserver:
+     jwt:
+       issuer-uri: http://localhost:8080/realms/myrealm
+       jwk-set-uri: http://localhost:8080/realms/myrealm/protocol/openid-connect/certs
 logging:
   level:
     '[org.springframework.jdbc]': debug
@@ -58,8 +63,8 @@ management:
   tracing:
     export:
       enabled: true
-      zipkin:
-        enabled: true
+     # zipkin:
+       # enabled: true
     sampling:
       probability: 1.0
 

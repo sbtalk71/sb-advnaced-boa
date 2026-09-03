@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-boot-observability
   profiles:
-    active: prometheus
+    active: splunk-uf
 
 management:
   endpoints:
