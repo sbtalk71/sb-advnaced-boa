@@ -16,6 +16,7 @@ public class EmpServiceApplication extends SpringBootServletInitializer{
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		System.out.println(":::::::::::::::::::::Spring Laoding....:::::::::::");
 		
 		return builder.sources(EmpServiceApplication.class);
 	}
