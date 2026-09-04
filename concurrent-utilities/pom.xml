@@ -5,7 +5,7 @@
   <version>1.0</version>
   <name>concurrent-utilities</name>
   <properties>
-  	<mavne.compiler.source>21</mavne.compiler.source>
-  	<maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
   </properties>
 </project>
