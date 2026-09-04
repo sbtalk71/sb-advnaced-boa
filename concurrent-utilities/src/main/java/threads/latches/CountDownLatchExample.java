@@ -8,7 +8,7 @@ public class CountDownLatchExample {
 
         CountDownLatch latch =
             new CountDownLatch(3);
-
+System.out.println("Count ="+latch.getCount());
         Runnable service = () -> {
 
             try {
@@ -40,6 +40,6 @@ public class CountDownLatchExample {
         latch.await();
 
         System.out.println(
-            "All services ready. Application started.");
+            "All services ready. Application started."+latch.getCount());
     }
 }

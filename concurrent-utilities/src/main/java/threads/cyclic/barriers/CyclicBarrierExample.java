@@ -41,5 +41,7 @@ public class CyclicBarrierExample {
         new Thread(worker, "Worker-1").start();
         new Thread(worker, "Worker-2").start();
         new Thread(worker, "Worker-3").start();
+        
+        
     }
 }

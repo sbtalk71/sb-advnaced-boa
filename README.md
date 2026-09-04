@@ -3,6 +3,12 @@ Spring Boot Advanced classroom
 
 Pre Assessment Link: https://forms.cloud.microsoft/r/bYj2WzJNdV
 
+ 
+
+Post Assessment Link: https://forms.cloud.microsoft/r/LqPMmWEskx
+
+ 
+Feedback Link: https://forms.cloud.microsoft/r/eNt0GfVv7z
 
 ```yaml
 resilience4j:

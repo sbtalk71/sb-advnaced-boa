@@ -1,6 +1,7 @@
 package threads.semaphores;
 import java.util.concurrent.Semaphore;
 
+//A Semaphore controls how many threads can access a resource simultaneously
 public class SemaphoreExample {
 
     static Semaphore semaphore = new Semaphore(2);
@@ -14,7 +15,7 @@ public class SemaphoreExample {
                 Thread.currentThread().getName()
                 + " acquired connection");
 
-            Thread.sleep(2000);
+            Thread.sleep(4000);
 
             System.out.println(
                 Thread.currentThread().getName()

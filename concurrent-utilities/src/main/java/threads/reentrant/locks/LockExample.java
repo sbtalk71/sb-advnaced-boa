@@ -12,7 +12,7 @@ public class LockExample {
 
         public void withdraw(int amount) {
 
-            lock.lock();
+           lock.lock();
 
             try {
                 if (balance >= amount) {

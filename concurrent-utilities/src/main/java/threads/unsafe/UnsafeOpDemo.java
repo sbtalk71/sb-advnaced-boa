@@ -38,7 +38,7 @@ Counter counter = new Counter();
 class Counter {
     private int count = 0;
 
-    public void increment() {
+    public  void increment() {
         count++;
     }
 
